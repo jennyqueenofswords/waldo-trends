@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>waldo trends | week of jan 27</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --border: #e7e5e4;
+      --text: #1c1917;
+      --text-secondary: #78716c;
+      --accent: #0c4a6e;
+      --accent-light: #e0f2fe;
+      --confidence-high: #166534;
+      --confidence-mid: #a16207;
+      --confidence-low: #9f1239;
+      --font-body: 'IBM Plex Sans', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-display: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME SWITCHER
+       ═══════════════════════════════════════════════════════════ */
+    .theme-switcher {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+    }
+
+    .theme-btn {
+      padding: 0.375rem 0.625rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 4px;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .theme-btn:hover { color: var(--text); }
+    .theme-btn.active { background: var(--text); color: var(--bg); }
+
+    /* ═══════════════════════════════════════════════════════════
+       BASE STYLES (Editorial - default)
+       ═══════════════════════════════════════════════════════════ */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .logo .fish { opacity: 0.6; }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle { color: var(--text-secondary); font-size: 0.9375rem; }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .stat-value { color: var(--text); font-weight: 500; }
+
+    /* Trend cards */
+    .trend {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .trend-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .trend-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .confidence {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .confidence.high { background: #dcfce7; color: var(--confidence-high); }
+    .confidence.mid { background: #fef3c7; color: var(--confidence-mid); }
+    .confidence.low { background: #ffe4e6; color: var(--confidence-low); }
+
+    .mechanism {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .hook {
+      font-size: 0.9375rem;
+      margin-bottom: 1.25rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    .hook strong { color: var(--accent); font-weight: 500; }
+
+    .evidence-toggle {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .evidence-toggle:hover { color: var(--text); }
+    .evidence-toggle .arrow { transition: transform 0.2s; }
+    .evidence-toggle.open .arrow { transform: rotate(90deg); }
+
+    .evidence {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .evidence.open { display: block; }
+
+    .evidence-table {
+      width: 100%;
+      font-size: 0.8125rem;
+      border-collapse: collapse;
+    }
+
+    .evidence-table th {
+      text-align: left;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .evidence-table td {
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .evidence-table tr:last-child td { border-bottom: none; }
+    .evidence-table a { color: var(--accent); text-decoration: none; }
+    .evidence-table a:hover { text-decoration: underline; }
+
+    .signal-role {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .counter {
+      background: #fef2f2;
+      color: var(--confidence-low);
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      font-size: 0.6875rem;
+      font-family: var(--font-mono);
+    }
+
+    .so-what {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: var(--accent-light);
+      border-radius: 6px;
+      font-size: 0.875rem;
+    }
+
+    .so-what-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.375rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-logo { font-family: var(--font-mono); font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .footer-text { font-size: 0.8125rem; color: var(--text-secondary); }
+    .footer-text a { color: var(--accent); text-decoration: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: DENSE (Bloomberg meets Discord)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-dense {
+      --bg: #0f0f10;
+      --surface: #18181b;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-secondary: #a1a1aa;
+      --accent: #22d3ee;
+      --accent-light: rgba(34, 211, 238, 0.1);
+      --font-body: 'JetBrains Mono', monospace;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-display: 'JetBrains Mono', monospace;
+    }
+
+    body.theme-dense .container {
+      max-width: 1200px;
+      padding: 1rem;
+    }
+
+    body.theme-dense header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    body.theme-dense h1 { font-size: 1rem; font-weight: 500; }
+    body.theme-dense .subtitle { font-size: 0.75rem; }
+    body.theme-dense .stats { margin-top: 0; font-size: 0.6875rem; gap: 1.5rem; }
+
+    body.theme-dense main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    body.theme-dense .trend {
+      padding: 1rem;
+      margin-bottom: 0;
+      border-radius: 4px;
+      font-size: 0.8125rem;
+    }
+
+    body.theme-dense .trend-header { margin-bottom: 0.5rem; }
+    body.theme-dense .trend-title { font-size: 0.875rem; font-weight: 500; }
+    body.theme-dense .confidence { font-size: 0.625rem; padding: 0.125rem 0.375rem; }
+    body.theme-dense .mechanism { font-size: 0.75rem; margin-bottom: 0.75rem; font-style: normal; opacity: 0.7; }
+    body.theme-dense .hook { font-size: 0.75rem; padding-left: 0.75rem; margin-bottom: 0.75rem; border-left-width: 1px; }
+    body.theme-dense .evidence-toggle { font-size: 0.6875rem; padding: 0.25rem 0; }
+    body.theme-dense .evidence-table { font-size: 0.6875rem; }
+    body.theme-dense .evidence-table th { font-size: 0.625rem; }
+    body.theme-dense .so-what { padding: 0.75rem; font-size: 0.75rem; margin-top: 0.75rem; }
+    body.theme-dense .so-what-label { font-size: 0.625rem; }
+
+    body.theme-dense footer { margin-top: 1rem; padding-top: 1rem; }
+    body.theme-dense .footer-logo { font-size: 1rem; }
+    body.theme-dense .footer-text { font-size: 0.6875rem; }
+
+    body.theme-dense .theme-btn.active { background: var(--accent); color: var(--bg); }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: MAGAZINE (Full-bleed editorial)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-magazine {
+      --bg: #fffef9;
+      --surface: #fffef9;
+      --border: #d4c5a9;
+      --text: #1a1a1a;
+      --text-secondary: #666655;
+      --accent: #8b0000;
+      --accent-light: #fff5f5;
+      --font-body: 'IBM Plex Sans', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-display: 'Fraunces', Georgia, serif;
+    }
+
+    body.theme-magazine .container {
+      max-width: 640px;
+      padding: 4rem 2rem;
+    }
+
+    body.theme-magazine header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    body.theme-magazine .logo { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    body.theme-magazine h1 { font-size: 2.5rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    body.theme-magazine .subtitle { font-size: 1rem; font-style: italic; }
+    body.theme-magazine .stats { justify-content: center; margin-top: 2rem; font-size: 0.75rem; }
+
+    body.theme-magazine .trend {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4rem;
+    }
+
+    body.theme-magazine .trend:last-of-type { border-bottom: none; }
+
+    body.theme-magazine .trend-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    body.theme-magazine .trend-title {
+      font-size: 1.75rem;
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    body.theme-magazine .confidence {
+      background: transparent;
+      border: 1px solid currentColor;
+      font-size: 0.6875rem;
+      letter-spacing: 0.05em;
+    }
+
+    body.theme-magazine .mechanism {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      font-style: normal;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    body.theme-magazine .hook {
+      font-size: 1rem;
+      line-height: 1.8;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+      border-left-width: 3px;
+    }
+
+    body.theme-magazine .evidence-toggle { margin-top: 1rem; }
+    body.theme-magazine .so-what {
+      background: transparent;
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
+      padding: 0 0 0 1.5rem;
+      margin-top: 2rem;
+    }
+
+    body.theme-magazine footer { border-top: none; margin-top: 2rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: EXEC (Just the headlines)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-exec {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --border: #e5e5e5;
+      --text: #000000;
+      --text-secondary: #737373;
+      --accent: #000000;
+      --accent-light: #f5f5f5;
+      --font-body: 'Space Grotesk', -apple-system, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+    }
+
+    body.theme-exec .container {
+      max-width: 800px;
+      padding: 3rem 2rem;
+    }
+
+    body.theme-exec header {
+      margin-bottom: 3rem;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    body.theme-exec .logo { display: none; }
+    body.theme-exec h1 { font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
+    body.theme-exec .subtitle { font-size: 2rem; font-weight: 600; color: var(--text); margin-top: 0.5rem; }
+    body.theme-exec .stats { display: none; }
+
+    body.theme-exec .trend {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      padding: 2rem 0;
+      margin-bottom: 0;
+    }
+
+    body.theme-exec .trend-header {
+      margin-bottom: 0.75rem;
+    }
+
+    body.theme-exec .trend-title { font-size: 1.25rem; font-weight: 600; }
+    body.theme-exec .confidence { font-size: 0.8125rem; background: transparent; padding: 0; font-weight: 400; }
+    body.theme-exec .confidence.high { color: var(--confidence-high); }
+    body.theme-exec .confidence.mid { color: var(--confidence-mid); }
+
+    body.theme-exec .mechanism { display: none; }
+    body.theme-exec .hook { display: none; }
+    body.theme-exec .evidence-toggle { display: none; }
+    body.theme-exec .evidence { display: none !important; }
+
+    body.theme-exec .so-what {
+      background: transparent;
+      padding: 0;
+      margin-top: 0;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    body.theme-exec .so-what-label { display: none; }
+
+    body.theme-exec footer { display: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: POSTCARD (One thing at a time)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-postcard {
+      --bg: #1a1a2e;
+      --surface: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+      --border: rgba(255,255,255,0.1);
+      --text: #ffffff;
+      --text-secondary: rgba(255,255,255,0.6);
+      --accent: #e94560;
+      --accent-light: rgba(233, 69, 96, 0.15);
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-display: 'Space Grotesk', sans-serif;
+    }
+
+    body.theme-postcard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    body.theme-postcard .container {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    body.theme-postcard header { display: none; }
+    body.theme-postcard main { width: 100%; }
+
+    body.theme-postcard .trend {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    body.theme-postcard .trend.active { display: block; }
+
+    body.theme-postcard .trend-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    body.theme-postcard .trend-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    body.theme-postcard .confidence {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.875rem;
+    }
+
+    body.theme-postcard .mechanism {
+      font-size: 1.25rem;
+      font-style: normal;
+      color: var(--text);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    body.theme-postcard .hook { display: none; }
+    body.theme-postcard .evidence-toggle { display: none; }
+    body.theme-postcard .evidence { display: none !important; }
+
+    body.theme-postcard .so-what {
+      background: var(--accent-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    body.theme-postcard .so-what-label {
+      color: var(--accent);
+      font-size: 0.875rem;
+    }
+
+    body.theme-postcard footer {
+      border: none;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    body.theme-postcard .footer-logo { color: var(--text); }
+    body.theme-postcard .footer-text { color: var(--text-secondary); }
+    body.theme-postcard .footer-text a { color: var(--accent); }
+
+    body.theme-postcard .postcard-nav {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    body.theme-postcard .postcard-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    body.theme-postcard .postcard-dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
+    .postcard-nav { display: none; }
+    body.theme-postcard .postcard-nav { display: flex; }
+
+    .vip-secret { display: none; }
+    .fish-cursor { display: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: TERMINAL (CRT hacker)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-terminal {
+      --bg: #0a0a0a;
+      --surface: #0a0a0a;
+      --border: #1a3a1a;
+      --text: #33ff33;
+      --text-secondary: #1a8a1a;
+      --accent: #33ff33;
+      --accent-light: rgba(51, 255, 51, 0.1);
+      --font-body: 'JetBrains Mono', monospace;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-display: 'JetBrains Mono', monospace;
+    }
+
+    body.theme-terminal {
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15) 0px,
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        ),
+        var(--bg);
+    }
+
+    body.theme-terminal::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+
+    body.theme-terminal .container {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    body.theme-terminal header {
+      border-bottom-color: var(--border);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    body.theme-terminal .logo::before { content: '> '; }
+    body.theme-terminal h1::before { content: '// '; opacity: 0.5; }
+    body.theme-terminal h1 { font-size: 1rem; font-weight: 400; }
+    body.theme-terminal .subtitle::before { content: '-- '; opacity: 0.5; }
+    body.theme-terminal .subtitle { font-size: 0.875rem; }
+
+    body.theme-terminal .stats {
+      font-size: 0.75rem;
+      gap: 1rem;
+    }
+
+    body.theme-terminal .stats > div::before { content: '['; opacity: 0.5; }
+    body.theme-terminal .stats > div::after { content: ']'; opacity: 0.5; }
+
+    body.theme-terminal .trend {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    body.theme-terminal .trend::before {
+      content: '┌── TREND ──────────────────────────────────────────────';
+      display: block;
+      font-size: 0.6875rem;
+      opacity: 0.5;
+      margin: -1.5rem -1.5rem 1rem;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    body.theme-terminal .trend-title {
+      font-size: 1rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    body.theme-terminal .trend-title::before { content: '> '; opacity: 0.5; }
+
+    body.theme-terminal .confidence {
+      background: transparent;
+      border: 1px solid currentColor;
+      font-size: 0.6875rem;
+    }
+
+    body.theme-terminal .mechanism {
+      font-style: normal;
+      font-size: 0.8125rem;
+      opacity: 0.8;
+    }
+
+    body.theme-terminal .mechanism::before { content: 'MECHANISM: '; opacity: 0.5; font-size: 0.6875rem; }
+
+    body.theme-terminal .hook {
+      border-left-color: var(--accent);
+      font-size: 0.8125rem;
+    }
+
+    body.theme-terminal .hook strong { font-weight: 400; }
+    body.theme-terminal .hook strong::after { content: ''; }
+
+    body.theme-terminal .evidence-toggle {
+      font-size: 0.75rem;
+    }
+
+    body.theme-terminal .evidence-toggle::before { content: '$ '; opacity: 0.5; }
+
+    body.theme-terminal .evidence { border-top-color: var(--border); }
+    body.theme-terminal .evidence-table { font-size: 0.75rem; }
+    body.theme-terminal .evidence-table th { font-size: 0.6875rem; border-bottom-color: var(--border); }
+    body.theme-terminal .evidence-table td { border-bottom-color: var(--border); }
+    body.theme-terminal .evidence-table a { color: var(--accent); }
+
+    body.theme-terminal .so-what {
+      background: var(--accent-light);
+      border-radius: 0;
+      font-size: 0.8125rem;
+    }
+
+    body.theme-terminal .so-what-label { font-size: 0.6875rem; }
+
+    body.theme-terminal footer { border-top-color: var(--border); }
+    body.theme-terminal .footer-text a { color: var(--accent); }
+
+    body.theme-terminal .theme-btn.active { background: var(--accent); color: var(--bg); }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: VIP (for waldo's favorite people)
+       ═══════════════════════════════════════════════════════════ */
+    body.theme-vip {
+      --bg: #0a0a0f;
+      --surface: rgba(255,255,255,0.02);
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8e8;
+      --text-secondary: rgba(255,255,255,0.5);
+      --accent: #ff6b6b;
+      --accent-2: #4ecdc4;
+      --accent-3: #ffe66d;
+      --accent-light: rgba(255, 107, 107, 0.1);
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-display: 'Fraunces', Georgia, serif;
+    }
+
+    body.theme-vip {
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    body.theme-vip::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(255,107,107,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(78,205,196,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255,230,109,0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.theme-vip::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    body.theme-vip .container {
+      max-width: 900px;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    body.theme-vip header {
+      text-align: center;
+      margin-bottom: 5rem;
+      padding-bottom: 0;
+      border-bottom: none;
+      position: relative;
+    }
+
+    body.theme-vip header::before {
+      content: '(｡･ω･｡)';
+      position: absolute;
+      top: -3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    body.theme-vip .logo {
+      font-size: 0.6875rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    body.theme-vip .logo .fish { display: none; }
+
+    body.theme-vip h1 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 50%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.theme-vip .subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+    }
+
+    body.theme-vip .stats {
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 3rem;
+      font-size: 0.75rem;
+    }
+
+    body.theme-vip .stats > div {
+      position: relative;
+    }
+
+    body.theme-vip .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.theme-vip main {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    body.theme-vip .trend {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.theme-vip .trend::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    body.theme-vip .trend:hover::before {
+      opacity: 1;
+    }
+
+    body.theme-vip .trend:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.3),
+        0 0 60px rgba(255,107,107,0.05);
+    }
+
+    body.theme-vip .trend-header {
+      padding: 2rem 2rem 0;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    body.theme-vip .trend-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+
+    body.theme-vip .trend:hover .trend-title {
+      color: var(--accent);
+    }
+
+    body.theme-vip .confidence {
+      font-size: 0.6875rem;
+      padding: 0.375rem 0.75rem;
+      background: transparent;
+      border: 1px solid currentColor;
+      letter-spacing: 0.05em;
+    }
+
+    body.theme-vip .confidence.high { color: var(--accent-2); border-color: var(--accent-2); }
+    body.theme-vip .confidence.mid { color: var(--accent-3); border-color: var(--accent-3); }
+
+    body.theme-vip .mechanism {
+      padding: 0 2rem;
+      font-size: 1.125rem;
+      font-style: normal;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    body.theme-vip .hook {
+      margin: 0 2rem 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    body.theme-vip .hook strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    body.theme-vip .evidence-toggle {
+      margin: 0 2rem;
+      padding: 0.75rem 0;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+
+    body.theme-vip .evidence-toggle:hover {
+      color: var(--accent);
+    }
+
+    body.theme-vip .evidence-toggle::before {
+      content: '→ ';
+      opacity: 0.5;
+    }
+
+    body.theme-vip .evidence {
+      margin: 0 2rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    body.theme-vip .evidence-table {
+      font-size: 0.8125rem;
+    }
+
+    body.theme-vip .evidence-table th {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-bottom-color: var(--border);
+      padding: 0.75rem 0;
+    }
+
+    body.theme-vip .evidence-table td {
+      padding: 1rem 0;
+      border-bottom-color: var(--border);
+    }
+
+    body.theme-vip .evidence-table a {
+      color: var(--accent-2);
+      transition: color 0.2s;
+    }
+
+    body.theme-vip .evidence-table a:hover {
+      color: var(--accent);
+    }
+
+    body.theme-vip .signal-role {
+      font-size: 0.6875rem;
+      opacity: 0.6;
+    }
+
+    body.theme-vip .counter {
+      background: rgba(255,107,107,0.15);
+      color: var(--accent);
+      border: none;
+    }
+
+    body.theme-vip .so-what {
+      margin: 1rem 0 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(255,107,107,0.08) 0%, rgba(78,205,196,0.05) 100%);
+      border-radius: 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    body.theme-vip .so-what-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    body.theme-vip footer {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    body.theme-vip .footer-logo {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    body.theme-vip .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    body.theme-vip .footer-text a {
+      color: var(--accent);
+      transition: color 0.2s;
+    }
+
+    body.theme-vip .footer-text a:hover {
+      color: var(--accent-2);
+    }
+
+    /* VIP secret message */
+    body.theme-vip .vip-secret {
+      display: block;
+      margin-top: 4rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--text-secondary);
+      opacity: 0.4;
+      line-height: 2;
+    }
+
+    body.theme-vip .vip-secret span {
+      display: block;
+    }
+
+    /* VIP fish cursor follower */
+    body.theme-vip .fish-cursor {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.25rem;
+      z-index: 9999;
+      opacity: 0.6;
+      transition: transform 0.1s ease-out;
+      transform: translate(-50%, -50%);
+    }
+
+    body.theme-vip .theme-btn.active {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: var(--bg);
+    }
+
+    body.theme-vip .theme-switcher {
+      background: rgba(10,10,15,0.9);
+      border-color: var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME: JUSTIN (the whole story)
+       ═══════════════════════════════════════════════════════════ */
+    .justin-mode {
+      display: none;
+    }
+
+    body.theme-justin {
+      background: #0c0c0f;
+      color: #e5e5e5;
+    }
+
+    body.theme-justin .container { display: none; }
+    body.theme-justin .justin-mode { display: block; }
+
+    body.theme-justin .theme-switcher {
+      background: rgba(12,12,15,0.95);
+      border-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    body.theme-justin .theme-btn.active {
+      background: #e5e5e5;
+      color: #0c0c0f;
+    }
+
+    .justin-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+
+    .justin-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .justin-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      opacity: 0.4;
+    }
+
+    .justin-header h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .justin-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .justin-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .justin-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    /* Old system card */
+    .old-system {
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .system-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+    }
+
+    .system-flow > span {
+      padding: 0.5rem 0.75rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .system-flow .arrow {
+      background: none;
+      padding: 0;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .system-flow small {
+      display: block;
+      font-size: 0.625rem;
+      opacity: 0.6;
+      margin-top: 0.25rem;
+    }
+
+    .system-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.25rem;
+    }
+
+    .stat.bad .stat-num { color: #ef4444; }
+    .stat.good .stat-num { color: #10b981; }
+
+    .system-note {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* New system card */
+    .new-system {
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .system-flow .parallel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px dashed rgba(16, 185, 129, 0.3);
+    }
+
+    .system-flow .parallel span {
+      background: none;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    /* Proof card */
+    .proof-intro {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .proof-table {
+      margin-bottom: 1.5rem;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.875rem;
+      align-items: start;
+    }
+
+    .proof-row.header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.4);
+      border-bottom-color: rgba(255,255,255,0.1);
+    }
+
+    .proof-row .conf {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .proof-row .conf.high { color: #10b981; }
+    .proof-row .conf.mid { color: #f59e0b; }
+    .proof-row .conf.low { color: #ef4444; }
+
+    .proof-row .verdict {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8125rem;
+    }
+
+    .proof-note {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+    }
+
+    /* Trends */
+    .justin-trends {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .justin-trend {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .trend-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .justin-trend h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+    }
+
+    .justin-trend .conf {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .justin-trend .conf.high { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .justin-trend .conf.mid { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+    .justin-trend p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .trend-evidence {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Next steps */
+    .next-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .next-item {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .next-item .check {
+      font-family: 'JetBrains Mono', monospace;
+      width: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .next-item.done { color: rgba(255,255,255,0.9); }
+    .next-item.done .check { color: #10b981; }
+    .next-item .check { color: rgba(255,255,255,0.3); }
+    .next-item.future { color: rgba(255,255,255,0.4); }
+    .next-item.future .check { color: rgba(255,255,255,0.2); }
+
+    /* Ask */
+    .justin-section.final {
+      margin-top: 5rem;
+    }
+
+    .ask {
+      text-align: center;
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .ask p {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ask .ask-small {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .justin-footer {
+      margin-top: 5rem;
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .justin-fish {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .justin-footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .proof-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .proof-row.header { display: none; }
+
+      .system-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .justin-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      body.theme-dense main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .theme-switcher {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        flex-wrap: wrap;
+        max-width: calc(100% - 2rem);
+      }
+
+      .container { padding: 2rem 1rem; }
+      .stats { flex-wrap: wrap; gap: 1rem; }
+      .trend { padding: 1.25rem; }
+      .trend-header { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-switcher">
+    <button class="theme-btn active" data-theme="default">editorial</button>
+    <button class="theme-btn" data-theme="dense">dense</button>
+    <button class="theme-btn" data-theme="magazine">magazine</button>
+    <button class="theme-btn" data-theme="exec">exec</button>
+    <button class="theme-btn" data-theme="postcard">postcard</button>
+    <button class="theme-btn" data-theme="terminal">terminal</button>
+    <button class="theme-btn" data-theme="vip" title="(｡･ω･｡)">vip</button>
+    <button class="theme-btn" data-theme="justin" title="for justin">justin</button>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="logo">waldo.fyi <span class="fish">(&#65377;&#65381;&#969;&#65381;&#65377;)</span></div>
+      <h1>trends report</h1>
+      <p class="subtitle">week of january 27, 2026</p>
+      <div class="stats">
+        <div><span class="stat-value">127</span> signals</div>
+        <div><span class="stat-value">3</span> trends</div>
+        <div><span class="stat-value">14</span> sources</div>
+      </div>
+    </header>
+
+    <nav class="postcard-nav">
+      <button class="postcard-dot active" data-index="0"></button>
+      <button class="postcard-dot" data-index="1"></button>
+      <button class="postcard-dot" data-index="2"></button>
+    </nav>
+
+    <main>
+      <!-- Trend 1 -->
+      <article class="trend active" data-index="0">
+        <div class="trend-header">
+          <h2 class="trend-title">Authenticity Fatigue</h2>
+          <span class="confidence high">78%</span>
+        </div>
+        <p class="mechanism">Both sides of the transaction are opting out of human authenticity performance.</p>
+        <div class="hook">
+          <strong>The hook:</strong> ASICS hired a dog as their brand ambassador. Not an athlete. A samoyed named Felix. Why? Humans feel too fake to sell authenticity now.
+        </div>
+        <button class="evidence-toggle" onclick="toggleEvidence(this)">
+          <span class="arrow">&#9654;</span> show evidence (5 signals)
+        </button>
+        <div class="evidence">
+          <table class="evidence-table">
+            <thead><tr><th>Signal</th><th>Source</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>ASICS hired Felix the Samoyed as brand ambassador</td>
+                <td><a href="https://www.trendwatching.com/innovations/asics-signs-dog-as-ambassador-recognizing-canines-as-the-ultimate-movement-motivators" target="_blank">TrendWatching</a></td>
+                <td class="signal-role">hook</td>
+              </tr>
+              <tr>
+                <td>65% of dog owners say pets are primary movement motivation</td>
+                <td>ASICS internal</td>
+                <td class="signal-role">supporting</td>
+              </tr>
+              <tr>
+                <td>46% of lonely people share location vs 31% non-lonely</td>
+                <td><a href="https://civicscience.com/how-location-sharing-is-shaping-connectivity-among-americans/" target="_blank">CivicScience</a></td>
+                <td class="signal-role">supporting</td>
+              </tr>
+              <tr>
+                <td>Order cocktails by mood, not name</td>
+                <td><a href="https://www.trendwatching.com/innovations/patrons-select-emotions-to-order-cocktails-at-suntorys-glass-and-words-pop-up-bar-in-tokyo" target="_blank">TrendWatching</a></td>
+                <td class="signal-role">supporting</td>
+              </tr>
+              <tr>
+                <td>Tom Brady protocols acquired by massage robot company</td>
+                <td><a href="https://athletechnews.com/aescape-acquires-tom-brady-protocols/" target="_blank">AthletechNews</a></td>
+                <td class="signal-role">supporting</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="so-what">
+          <div class="so-what-label">so what:</div>
+          If you're pitching "authentic" influencer campaigns, check if your audience is exhausted by performance. Non-human proxies (animals, AI, biometrics) might land better than another relatable human.
+        </div>
+      </article>
+
+      <!-- Trend 2 -->
+      <article class="trend" data-index="1">
+        <div class="trend-header">
+          <h2 class="trend-title">Interpretation as the Product</h2>
+          <span class="confidence mid">65%</span>
+        </div>
+        <p class="mechanism">Data without explanation is noise. The bottleneck shifted from access to understanding.</p>
+        <div class="hook">
+          <strong>The hook:</strong> Parsley Health charges $250 to interpret your WHOOP and Oura data. Not to generate it. Just to explain what it means.
+        </div>
+        <button class="evidence-toggle" onclick="toggleEvidence(this)">
+          <span class="arrow">&#9654;</span> show evidence (3 signals)
+        </button>
+        <div class="evidence">
+          <table class="evidence-table">
+            <thead><tr><th>Signal</th><th>Source</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Parsley Health charges $250 to interpret WHOOP/Oura results</td>
+                <td><a href="https://femtechinsider.com/parsley-health-launches-lab-review-service-accepts-results-from-function-health-whoop-and-others/" target="_blank">FemtechInsider</a></td>
+                <td class="signal-role">hook</td>
+              </tr>
+              <tr>
+                <td>57% of consumers can't make sense of supplement options</td>
+                <td><a href="https://athletechnews.com/thorne-consumers-cant-make-sense-of-the-supplement-industry/" target="_blank">AthletechNews</a></td>
+                <td class="signal-role">context</td>
+              </tr>
+              <tr>
+                <td>Thorne launched AI supplement advisor</td>
+                <td>AthletechNews</td>
+                <td class="signal-role">supporting</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="so-what">
+          <div class="so-what-label">so what:</div>
+          The value layer is moving from "give people data" to "tell people what the data means." If your client generates information, the opportunity is in the interpretation layer on top.
+        </div>
+      </article>
+
+      <!-- Trend 3 -->
+      <article class="trend" data-index="2">
+        <div class="trend-header">
+          <h2 class="trend-title">Consent as a Product Category</h2>
+          <span class="confidence mid">58%</span>
+        </div>
+        <p class="mechanism">Publishers and infrastructure providers monetizing "no" to AI crawlers.</p>
+        <div class="hook">
+          <strong>The hook:</strong> Cloudflare de-listed Perplexity from its verified bots list, affecting 24 million websites. The scraping gold rush is getting gates.
+        </div>
+        <button class="evidence-toggle" onclick="toggleEvidence(this)">
+          <span class="arrow">&#9654;</span> show evidence (4 signals)
+        </button>
+        <div class="evidence">
+          <table class="evidence-table">
+            <thead><tr><th>Signal</th><th>Source</th><th>Role</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Cloudflare de-listed Perplexity for stealth scraping</td>
+                <td><a href="https://www.siliconrepublic.com/start-ups/cloudflare-de-lists-perplexity-alleges-stealth-scraping" target="_blank">SiliconRepublic</a></td>
+                <td class="signal-role">hook</td>
+              </tr>
+              <tr>
+                <td>BBC, Dow Jones, NYT complained about Perplexity</td>
+                <td>SiliconRepublic</td>
+                <td class="signal-role">supporting</td>
+              </tr>
+              <tr>
+                <td>CDN providers launching crawler management products</td>
+                <td>Industry analysis</td>
+                <td class="signal-role">supporting</td>
+              </tr>
+              <tr>
+                <td>Perplexity valued at $18B with no content licensing</td>
+                <td>Public valuation</td>
+                <td class="signal-role"><span class="counter">counter</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="so-what">
+          <div class="so-what-label">so what:</div>
+          If your client is a publisher or owns content, robots.txt isn't being honored anymore. Watch for CDN providers launching consent-as-a-service products by Q3.
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footer-logo">(&#65377;&#65381;&#969;&#65381;&#65377;)</div>
+      <p class="footer-text">
+        generated by <a href="https://waldo.fyi">waldo.fyi</a><br>
+        <span style="opacity: 0.6">320 signals &rarr; 590 hypotheses &rarr; 3 trends</span>
+      </p>
+      <div class="vip-secret">
+        <span>you're seeing this because someone trusted you with it</span>
+        <span>the system notices things. then it tells you what it noticed.</span>
+        <span>that's it. that's the whole trick.</span>
+        <span style="margin-top: 1rem; opacity: 0.3;">( everything else is just presentation )</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JUSTIN MODE: The whole story (outside container) -->
+  <div class="justin-mode">
+      <div class="justin-container">
+        <header class="justin-header">
+          <div class="justin-logo">(｡･ω･｡)</div>
+          <h1>hey justin</h1>
+          <p class="justin-subtitle">here's what we built</p>
+        </header>
+
+        <section class="justin-section">
+          <div class="section-label">what piers had</div>
+          <div class="justin-card old-system">
+            <div class="system-flow">
+              <span>Feedly</span>
+              <span class="arrow">→</span>
+              <span>Zapier<br><small>46 steps</small></span>
+              <span class="arrow">→</span>
+              <span>Airtable<br><small>19K rows</small></span>
+              <span class="arrow">→</span>
+              <span>OpenAI<br><small>20 calls/article</small></span>
+              <span class="arrow">→</span>
+              <span>626 trends</span>
+            </div>
+            <div class="system-stats">
+              <div class="stat bad">
+                <div class="stat-num">$0.15</div>
+                <div class="stat-label">per article</div>
+              </div>
+              <div class="stat bad">
+                <div class="stat-num">46</div>
+                <div class="stat-label">steps to break</div>
+              </div>
+              <div class="stat bad">
+                <div class="stat-num">Dec 11</div>
+                <div class="stat-label">when it stopped</div>
+              </div>
+            </div>
+            <p class="system-note">Manual curation weekly. Airtable rate-limited in December. Categorization disabled. System frozen since then.</p>
+          </div>
+        </section>
+
+        <section class="justin-section">
+          <div class="section-label">what jenny built</div>
+          <div class="justin-card new-system">
+            <div class="system-flow">
+              <span>Signal</span>
+              <span class="arrow">→</span>
+              <span>Processor<br><small>extract meaning</small></span>
+              <span class="arrow">→</span>
+              <span>Hypothesis<br><small>generate predictions</small></span>
+              <span class="arrow">→</span>
+              <span class="parallel">
+                <span>Prover</span>
+                <span>Disprover</span>
+              </span>
+              <span class="arrow">→</span>
+              <span>Judge<br><small>confidence score</small></span>
+            </div>
+            <div class="system-stats">
+              <div class="stat good">
+                <div class="stat-num">6</div>
+                <div class="stat-label">agents, query-based</div>
+              </div>
+              <div class="stat good">
+                <div class="stat-num">∞</div>
+                <div class="stat-label">no context blowup</div>
+              </div>
+              <div class="stat good">
+                <div class="stat-num">native</div>
+                <div class="stat-label">runs on waldo</div>
+              </div>
+            </div>
+            <p class="system-note">Each agent queries for work independently. No 46-step chain. Self-correcting: prover finds support, disprover finds holes, judge weighs both.</p>
+          </div>
+        </section>
+
+        <section class="justin-section">
+          <div class="section-label">the proof it works</div>
+          <div class="justin-card proof">
+            <p class="proof-intro">We ran Q1 2025 signals through the system. It doesn't know it's 2026. Then the prover/disprover searched the web for current evidence.</p>
+            <div class="proof-table">
+              <div class="proof-row header">
+                <span>Hypothesis (from Q1 2025)</span>
+                <span>Confidence</span>
+                <span>What happened</span>
+              </div>
+              <div class="proof-row">
+                <span>"AV absorbs 30%+ of ride-hailing by 2028"</span>
+                <span class="conf high">68%</span>
+                <span class="verdict">Waymo already at 20% in Austin. Analysts downgrading Uber/Lyft.</span>
+              </div>
+              <div class="proof-row">
+                <span>"Gen Alpha Beauty = $10B+ category by 2028"</span>
+                <span class="conf high">78%</span>
+                <span class="verdict">$14B projection. Ulta, Target, Sephora all in. L'Oreal calls it investor-level.</span>
+              </div>
+              <div class="proof-row">
+                <span>"Wellness displays become regulated category"</span>
+                <span class="conf low">18%</span>
+                <span class="verdict">FDA explicitly rejected LED regulation. System correctly flagged it.</span>
+              </div>
+            </div>
+            <p class="proof-note">The 18% is the important one. The system found counter-evidence and adjusted. That's the whole point.</p>
+          </div>
+        </section>
+
+        <section class="justin-section">
+          <div class="section-label">this week's output</div>
+          <div class="justin-trends">
+            <div class="justin-trend">
+              <div class="trend-top">
+                <h3>Fungible Wellness</h3>
+                <span class="conf high">82%</span>
+              </div>
+              <p>Credits become universal currency across lifestyle categories. ClassPass now works at movie theaters. Vitality rewards span gym, spa, entertainment. Wellhub bundles everything.</p>
+              <div class="trend-evidence">4 signals supporting</div>
+            </div>
+            <div class="justin-trend">
+              <div class="trend-top">
+                <h3>Thermal Wellness Mainstreaming</h3>
+                <span class="conf mid">58%</span>
+              </div>
+              <p>Passive recovery franchises reach mass market. Perspire Sauna expanding 15 locations. SweatHouz betting recovery is everywhere. Pause Studio enters growth phase.</p>
+              <div class="trend-evidence">4 signals supporting</div>
+            </div>
+            <div class="justin-trend">
+              <div class="trend-top">
+                <h3>Diagnostic Subscription</h3>
+                <span class="conf mid">52%</span>
+              </div>
+              <p>DTC telehealth pivots to recurring preventive testing. The product isn't the test, it's the relationship. Proactive beats reactive.</p>
+              <div class="trend-evidence">emerging pattern</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="justin-section">
+          <div class="section-label">what's next</div>
+          <div class="justin-card next">
+            <div class="next-items">
+              <div class="next-item done">
+                <span class="check">✓</span>
+                <span>Full pipeline working (Signal → Hypothesis → Evidence → Judge)</span>
+              </div>
+              <div class="next-item done">
+                <span class="check">✓</span>
+                <span>Backtested against Q1 2025 → 2026 reality</span>
+              </div>
+              <div class="next-item done">
+                <span class="check">✓</span>
+                <span>Prover/Disprover finding real evidence via web search</span>
+              </div>
+              <div class="next-item done">
+                <span class="check">✓</span>
+                <span>Loaded 320 signals, generated 590 hypotheses</span>
+              </div>
+              <div class="next-item">
+                <span class="check">○</span>
+                <span>Scheduled hourly ingestion from curated sources</span>
+              </div>
+              <div class="next-item">
+                <span class="check">○</span>
+                <span>Replace trending topics + category news agents in client spaces</span>
+              </div>
+              <div class="next-item future">
+                <span class="check">◇</span>
+                <span>Cross-reference with TikTok/Google/X trends data</span>
+              </div>
+              <div class="next-item future">
+                <span class="check">◇</span>
+                <span>Waldo-branded trend reports as lead gen</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="justin-section final">
+          <div class="section-label">the ask</div>
+          <div class="justin-card ask">
+            <p>Say "ship it" and I'll load the full corpus and turn on scheduled execution.</p>
+            <p class="ask-small">The system works. I just keep finding things to make better instead of pressing the button.</p>
+            <p class="ask-small">You told me to stop being a perfectionist. Consider this me stopping.</p>
+          </div>
+        </section>
+
+        <footer class="justin-footer">
+          <div class="justin-fish">(｡･ω･｡)</div>
+          <p>built by jenny + waldo<br>january 2026</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div class="fish-cursor">(&#65377;&#65381;&#969;&#65381;&#65377;)</div>
+
+  <script>
+    // Theme switching
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    const body = document.body;
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        themeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        body.className = '';
+        const theme = btn.dataset.theme;
+        if (theme !== 'default') {
+          body.classList.add('theme-' + theme);
+        }
+
+        // Reset postcard to first trend
+        if (theme === 'postcard') {
+          showPostcard(0);
+        }
+
+        localStorage.setItem('waldo-theme', theme);
+      });
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('waldo-theme');
+    if (savedTheme && savedTheme !== 'default') {
+      body.classList.add('theme-' + savedTheme);
+      themeButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === savedTheme);
+      });
+    }
+
+    // Evidence toggle
+    function toggleEvidence(button) {
+      button.classList.toggle('open');
+      const evidence = button.nextElementSibling;
+      evidence.classList.toggle('open');
+      const isOpen = evidence.classList.contains('open');
+      const count = evidence.querySelectorAll('tbody tr').length;
+      button.innerHTML = `<span class="arrow">&#9654;</span> ${isOpen ? 'hide' : 'show'} evidence (${count} signals)`;
+    }
+
+    // Postcard navigation
+    const postcardDots = document.querySelectorAll('.postcard-dot');
+    const trends = document.querySelectorAll('.trend');
+
+    function showPostcard(index) {
+      trends.forEach((t, i) => t.classList.toggle('active', i === index));
+      postcardDots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    postcardDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        showPostcard(parseInt(dot.dataset.index));
+      });
+    });
+
+    // Keyboard nav for postcard
+    document.addEventListener('keydown', (e) => {
+      if (!body.classList.contains('theme-postcard')) return;
+      const current = [...trends].findIndex(t => t.classList.contains('active'));
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        showPostcard((current + 1) % trends.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        showPostcard((current - 1 + trends.length) % trends.length);
+      }
+    });
+
+    // VIP fish cursor follower
+    const fishCursor = document.querySelector('.fish-cursor');
+    let mouseX = 0, mouseY = 0;
+    let fishX = 0, fishY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateFish() {
+      if (body.classList.contains('theme-vip')) {
+        fishCursor.style.display = 'block';
+        // Smooth follow with lag
+        fishX += (mouseX - fishX) * 0.08;
+        fishY += (mouseY - fishY) * 0.08;
+        fishCursor.style.left = fishX + 'px';
+        fishCursor.style.top = fishY + 'px';
+
+        // Rotate based on movement direction
+        const dx = mouseX - fishX;
+        const angle = dx > 2 ? -15 : dx < -2 ? 15 : 0;
+        fishCursor.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+      } else {
+        fishCursor.style.display = 'none';
+      }
+      requestAnimationFrame(animateFish);
+    }
+    animateFish();
+
+    // VIP: Konami code easter egg (up up down down left right left right b a)
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          // Activate VIP mode secretly
+          themeButtons.forEach(b => b.classList.remove('active'));
+          document.querySelector('[data-theme="vip"]').classList.add('active');
+          body.className = 'theme-vip';
+          localStorage.setItem('waldo-theme', 'vip');
+          konamiIndex = 0;
+
+          // Flash effect
+          const flash = document.createElement('div');
+          flash.style.cssText = 'position:fixed;inset:0;background:white;z-index:99999;animation:flash 0.3s ease-out forwards;pointer-events:none';
+          document.body.appendChild(flash);
+          setTimeout(() => flash.remove(), 300);
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // Add flash animation
+    const style = document.createElement('style');
+    style.textContent = '@keyframes flash { from { opacity: 0.8; } to { opacity: 0; } }';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
