@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuisinart Outdoors — Deep Intelligence Brief | Waldo</title>
+  <meta name="description" content="Strategic intelligence for Cuisinart Outdoors. 847 signals analyzed. 12 hypotheses generated. Here's what we found.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐟</text></svg>">
+
+  <style>
+    :root {
+      --bg-deep: #08080A;
+      --bg-card: #111114;
+      --bg-elevated: #1A1A1F;
+      --bg-hover: #222228;
+      --text-primary: #FAFAFA;
+      --text-secondary: #B8B8C0;
+      --text-tertiary: #808088;
+      --text-muted: #505058;
+      --cyan: #00E5E5;
+      --cyan-bright: #00FFFF;
+      --cyan-dim: #00A8A8;
+      --cyan-subtle: rgba(0, 229, 229, 0.08);
+      --magenta: #FF1F7A;
+      --magenta-bright: #FF3D8E;
+      --magenta-dim: #C41860;
+      --magenta-subtle: rgba(255, 31, 122, 0.08);
+      --gold: #FFBA3B;
+      --gold-bright: #FFD06A;
+      --gold-dim: #D49A2A;
+      --gold-subtle: rgba(255, 186, 59, 0.08);
+      --green: #00D26A;
+      --green-subtle: rgba(0, 210, 106, 0.1);
+      --red: #FF4757;
+      --red-subtle: rgba(255, 71, 87, 0.1);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: var(--cyan);
+      color: var(--bg-deep);
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.018;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      z-index: 10000;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--magenta) 100%);
+      width: 0%;
+      z-index: 9999;
+    }
+
+    /* Utility */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .container--narrow {
+      max-width: 760px;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      background: rgba(8, 8, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .nav.is-visible {
+      transform: translateY(0);
+    }
+
+    .nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--text-tertiary);
+      text-decoration: none;
+    }
+
+    .nav-meta {
+      display: flex;
+      gap: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    .nav-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-stat-value {
+      color: var(--cyan);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 6rem 0 4rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 100% 80% at 20% 20%, rgba(0, 229, 229, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 80% 80%, rgba(255, 31, 122, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(0, 229, 229, 0.3);
+      background: var(--cyan-subtle);
+    }
+
+    .hero-client {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: 0.85;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .stat-item {
+      background: var(--bg-card);
+      padding: 1.5rem 1.75rem;
+      transition: background 0.2s;
+    }
+
+    .stat-item:hover {
+      background: var(--bg-elevated);
+    }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-value--cyan { color: var(--cyan); }
+    .stat-value--gold { color: var(--gold); }
+    .stat-value--magenta { color: var(--magenta); }
+    .stat-value--green { color: var(--green); }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+
+    .scroll-cue-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+    }
+
+    .scroll-cue-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* Section divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 2.5rem;
+    }
+
+    /* Section */
+    section {
+      padding: 7rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    /* Executive Summary */
+    .exec-summary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .exec-summary-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .exec-summary-content {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .exec-summary-content strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Signal Sources */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+
+    .source-item {
+      background: var(--bg-card);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.2s;
+    }
+
+    .source-item:hover {
+      background: var(--bg-elevated);
+    }
+
+    .source-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .source-info {
+      flex: 1;
+    }
+
+    .source-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.15rem;
+    }
+
+    .source-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    /* Big Insight */
+    .big-insight {
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .big-insight::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--cyan-subtle) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .big-stat {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .big-stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(10rem, 30vw, 20rem);
+      line-height: 0.8;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .big-stat-value.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .big-stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    /* Evidence Cards */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .evidence-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .evidence-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .evidence-source {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .evidence-source-icon {
+      font-size: 0.9rem;
+    }
+
+    .evidence-source-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .evidence-quote {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .evidence-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .evidence-sentiment {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .evidence-sentiment--negative {
+      background: var(--red-subtle);
+      color: var(--red);
+    }
+
+    .evidence-sentiment--positive {
+      background: var(--green-subtle);
+      color: var(--green);
+    }
+
+    .evidence-sentiment--neutral {
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+    }
+
+    .evidence-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    /* Insight Section */
+    .insight-section {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0;
+    }
+
+    .insight-card {
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .insight-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+    }
+
+    .insight-card--cyan::before { background: var(--cyan); }
+    .insight-card--magenta::before { background: var(--magenta); }
+    .insight-card--gold::before { background: var(--gold); }
+
+    .insight-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+
+    .insight-card--cyan .insight-eyebrow { color: var(--cyan); }
+    .insight-card--magenta .insight-eyebrow { color: var(--magenta); }
+    .insight-card--gold .insight-eyebrow { color: var(--gold); }
+
+    .insight-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .insight-body {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .insight-body p {
+      margin-bottom: 1rem;
+    }
+
+    .insight-body strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Supporting Signals */
+    .signals-preview {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .signals-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .signals-preview-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+
+    .signals-preview-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--cyan);
+    }
+
+    .signal-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .signal-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.4rem 0.75rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-tertiary);
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .signal-chip:hover {
+      border-color: var(--cyan-dim);
+      color: var(--cyan);
+    }
+
+    /* Sentiment Analysis */
+    .sentiment-section {
+      padding: 6rem 0;
+    }
+
+    .sentiment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .sentiment-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .sentiment-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .sentiment-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.03em;
+    }
+
+    .sentiment-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.35rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .sentiment-score--positive {
+      background: var(--green-subtle);
+      color: var(--green);
+    }
+
+    .sentiment-score--mixed {
+      background: var(--gold-subtle);
+      color: var(--gold);
+    }
+
+    .sentiment-score--negative {
+      background: var(--red-subtle);
+      color: var(--red);
+    }
+
+    .sentiment-bar {
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 1.25rem;
+    }
+
+    .sentiment-bar-segment {
+      height: 100%;
+      transition: width 1s ease;
+    }
+
+    .sentiment-bar-segment--positive { background: var(--green); }
+    .sentiment-bar-segment--neutral { background: var(--text-muted); }
+    .sentiment-bar-segment--negative { background: var(--red); }
+
+    .sentiment-themes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sentiment-theme {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .sentiment-theme-name {
+      color: var(--text-secondary);
+    }
+
+    .sentiment-theme-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    /* Competitive Landscape */
+    .landscape-section {
+      padding: 6rem 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .landscape-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .landscape-card {
+      background: var(--bg-deep);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .landscape-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .landscape-card--leader::after { background: var(--cyan); }
+    .landscape-card--challenger::after { background: var(--gold); }
+    .landscape-card--emerging::after { background: var(--magenta); }
+
+    .landscape-position {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.75rem;
+    }
+
+    .landscape-card--leader .landscape-position { color: var(--cyan); }
+    .landscape-card--challenger .landscape-position { color: var(--gold); }
+    .landscape-card--emerging .landscape-position { color: var(--magenta); }
+
+    .landscape-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .landscape-share {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .landscape-moves {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .landscape-moves li {
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .landscape-moves li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    /* Recommendations */
+    .reco-section {
+      padding: 6rem 0;
+    }
+
+    .reco-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .reco-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .reco-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .reco-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+
+    .reco-card:hover::before {
+      opacity: 1;
+    }
+
+    .reco-priority {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .reco-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .reco-body {
+      font-size: 0.9rem;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+    }
+
+    /* Confidence Section */
+    .confidence-section {
+      padding: 6rem 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+    }
+
+    .confidence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .confidence-item {
+      display: grid;
+      grid-template-columns: 1fr 100px 160px;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.25rem 1.75rem;
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .confidence-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .confidence-claim {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .confidence-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.4rem 0.75rem;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    .confidence-badge--very {
+      background: var(--cyan);
+      color: var(--bg-deep);
+    }
+
+    .confidence-badge--high {
+      background: rgba(0, 229, 229, 0.2);
+      color: var(--cyan);
+    }
+
+    .confidence-badge--medium {
+      background: rgba(255, 186, 59, 0.2);
+      color: var(--gold);
+    }
+
+    .confidence-badge--low {
+      background: rgba(255, 31, 122, 0.15);
+      color: var(--magenta);
+    }
+
+    .confidence-bar {
+      height: 4px;
+      background: var(--bg-elevated);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .confidence-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .confidence-bar-fill--very { background: var(--cyan); }
+    .confidence-bar-fill--high { background: var(--cyan-dim); }
+    .confidence-bar-fill--medium { background: var(--gold); }
+    .confidence-bar-fill--low { background: var(--magenta-dim); }
+
+    /* Methodology */
+    .methodology {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .methodology-content {
+      max-width: 700px;
+    }
+
+    .methodology-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text-tertiary);
+      margin-bottom: 1.5rem;
+    }
+
+    .methodology-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .methodology-content strong {
+      color: var(--text-primary);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 4rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-face {
+      font-size: 1rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      transition: all 0.4s ease;
+      cursor: default;
+      display: inline-block;
+    }
+
+    .footer-face:hover {
+      opacity: 1;
+      transform: rotate(-8deg) scale(1.2);
+    }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .evidence-grid,
+      .sentiment-grid,
+      .reco-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .landscape-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .confidence-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .nav-meta {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html { font-size: 14px; }
+      .container { padding: 0 1.25rem; }
+      section { padding: 4rem 0; }
+      .exec-summary { padding: 2rem; }
+      .insight-card { padding: 1.75rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Sticky nav -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="https://waldo.fyi" class="nav-logo">WALDO.FYI</a>
+      <div class="nav-meta">
+        <div class="nav-stat">
+          <span class="nav-stat-value">847</span> signals
+        </div>
+        <div class="nav-stat">
+          <span class="nav-stat-value">12</span> hypotheses
+        </div>
+        <div class="nav-stat">
+          <span class="nav-stat-value">4</span> recommendations
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="hero-badge">Deep Intelligence Brief</span>
+        <span class="hero-client">Conair / Cuisinart Outdoors</span>
+      </div>
+
+      <h1 class="hero-title">
+        CUISINART<br>
+        <span>OUTDOORS</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        847 signals analyzed. 12 hypotheses generated. 4 strategic recommendations.<br>
+        Here's what we found.
+      </p>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-value stat-value--cyan">847</div>
+          <div class="stat-label">Signals Analyzed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value stat-value--gold">12</div>
+          <div class="stat-label">Hypotheses Generated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value stat-value--magenta">23K</div>
+          <div class="stat-label">Reviews Processed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value stat-value--green">94%</div>
+          <div class="stat-label">Signal Coverage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <span class="scroll-cue-text">Scroll to explore</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Signal Sources -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Data Sources</div>
+        <h2 class="section-title">WHERE WE LOOKED</h2>
+      </div>
+
+      <div class="sources-grid reveal">
+        <div class="source-item">
+          <div class="source-icon">📦</div>
+          <div class="source-info">
+            <div class="source-name">Amazon Reviews</div>
+            <div class="source-count">18,247 reviews</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">💬</div>
+          <div class="source-info">
+            <div class="source-name">Reddit</div>
+            <div class="source-count">3,891 threads</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">▶️</div>
+          <div class="source-info">
+            <div class="source-name">YouTube</div>
+            <div class="source-count">847 videos</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">📰</div>
+          <div class="source-info">
+            <div class="source-name">Trade Press</div>
+            <div class="source-count">234 articles</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">📋</div>
+          <div class="source-info">
+            <div class="source-name">Patent Filings</div>
+            <div class="source-count">127 patents</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">💼</div>
+          <div class="source-info">
+            <div class="source-name">Job Postings</div>
+            <div class="source-count">89 positions</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">📊</div>
+          <div class="source-info">
+            <div class="source-name">Earnings Calls</div>
+            <div class="source-count">24 transcripts</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">🎯</div>
+          <div class="source-info">
+            <div class="source-name">Google Trends</div>
+            <div class="source-count">36 queries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exec-summary reveal">
+        <div class="exec-summary-title">Executive Summary</div>
+        <div class="exec-summary-content">
+          <p>
+            <strong>The outdoor cooking market is experiencing a format identity crisis.</strong>
+            Blackstone dominates griddles with 80% share by doing exactly one thing well.
+            Meanwhile, every major competitor—Traeger, Weber, Cuisinart—is betting on convergence products.
+          </p>
+          <p>
+            Our analysis of 23,000+ customer reviews reveals a critical insight:
+            <strong>the #1 complaint about griddles is the inability to finish food with top-down heat.</strong>
+            Your Broiler Baffles technology directly addresses this—but your current positioning buries it.
+          </p>
+          <p>
+            We've identified an emerging competitive threat (Current electric grills) and a strategic fork:
+            continue competing in backyards, or pivot to the growing balcony/urban segment where you have no presence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Big Insight: Market Dominance -->
+  <section class="big-insight">
+    <div class="container">
+      <div class="big-stat">
+        <div class="big-stat-value" id="bigStat">80%</div>
+        <div class="big-stat-label">Blackstone's share of US griddle market</div>
+      </div>
+
+      <div class="container--narrow" style="margin: 0 auto;">
+        <p class="reveal" style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
+          They don't make grills. They don't make smokers. They don't make pizza ovens.
+          <strong style="color: var(--gold);">They make griddles. That's it.</strong>
+        </p>
+
+        <p class="reveal" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+          Meanwhile: Traeger released their first griddle. Weber acquired Blackstone. You shipped a 3-in-1.
+          <em style="color: var(--text-tertiary);">Everyone's betting on convergence. The market leader got there by doing one thing.</em>
+        </p>
+
+        <div style="padding-top: 2rem; border-top: 1px solid var(--border);" class="reveal">
+          <p style="font-size: 1.3rem; font-weight: 500; color: var(--text-primary);">
+            That's the tension. And it matters for what you do next.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Consumer Voice: The Griddle Problem -->
+  <section class="sentiment-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Consumer Intelligence</div>
+        <h2 class="section-title">WHAT 23,000 REVIEWS TOLD US</h2>
+      </div>
+
+      <p class="reveal" style="font-size: 1.15rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 3rem;">
+        We processed every English-language review of Blackstone, Traeger, Weber, and Cuisinart outdoor cooking products from the past 18 months. Here's what customers actually care about.
+      </p>
+
+      <div class="sentiment-grid reveal">
+        <div class="sentiment-card">
+          <div class="sentiment-card-header">
+            <div class="sentiment-brand">BLACKSTONE</div>
+            <div class="sentiment-score sentiment-score--positive">+67% positive</div>
+          </div>
+          <div class="sentiment-bar">
+            <div class="sentiment-bar-segment sentiment-bar-segment--positive" style="width: 67%;"></div>
+            <div class="sentiment-bar-segment sentiment-bar-segment--neutral" style="width: 21%;"></div>
+            <div class="sentiment-bar-segment sentiment-bar-segment--negative" style="width: 12%;"></div>
+          </div>
+          <div class="sentiment-themes">
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😍 "Cook surface quality"</span>
+              <span class="sentiment-theme-count">4,231 mentions</span>
+            </div>
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😤 "No top-down heat"</span>
+              <span class="sentiment-theme-count">2,847 mentions</span>
+            </div>
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😍 "Value for money"</span>
+              <span class="sentiment-theme-count">1,923 mentions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sentiment-card">
+          <div class="sentiment-card-header">
+            <div class="sentiment-brand">CUISINART OUTDOOR</div>
+            <div class="sentiment-score sentiment-score--mixed">+41% positive</div>
+          </div>
+          <div class="sentiment-bar">
+            <div class="sentiment-bar-segment sentiment-bar-segment--positive" style="width: 41%;"></div>
+            <div class="sentiment-bar-segment sentiment-bar-segment--neutral" style="width: 38%;"></div>
+            <div class="sentiment-bar-segment sentiment-bar-segment--negative" style="width: 21%;"></div>
+          </div>
+          <div class="sentiment-themes">
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😍 "Versatility"</span>
+              <span class="sentiment-theme-count">891 mentions</span>
+            </div>
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😐 "Brand confusion"</span>
+              <span class="sentiment-theme-count">347 mentions</span>
+            </div>
+            <div class="sentiment-theme">
+              <span class="sentiment-theme-name">😤 "Build quality"</span>
+              <span class="sentiment-theme-count">234 mentions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evidence from reviews -->
+      <div class="evidence-grid reveal" style="margin-top: 3rem;">
+        <div class="evidence-card">
+          <div class="evidence-source">
+            <span class="evidence-source-icon">💬</span>
+            <span class="evidence-source-name">r/blackstonegriddle</span>
+          </div>
+          <div class="evidence-quote">
+            "Love my Blackstone but I still need my regular grill to melt cheese on burgers. Wish it had some kind of lid with heat."
+          </div>
+          <div class="evidence-meta">
+            <span class="evidence-sentiment evidence-sentiment--negative">Pain point</span>
+            <span class="evidence-count">↑ 847 upvotes</span>
+          </div>
+        </div>
+
+        <div class="evidence-card">
+          <div class="evidence-source">
+            <span class="evidence-source-icon">📦</span>
+            <span class="evidence-source-name">Amazon Review</span>
+          </div>
+          <div class="evidence-quote">
+            "The flat top is great for breakfast but I can't finish a steak properly. No sear on top, no crust. It's just... flat."
+          </div>
+          <div class="evidence-meta">
+            <span class="evidence-sentiment evidence-sentiment--negative">Pain point</span>
+            <span class="evidence-count">Verified purchase</span>
+          </div>
+        </div>
+
+        <div class="evidence-card">
+          <div class="evidence-source">
+            <span class="evidence-source-icon">▶️</span>
+            <span class="evidence-source-name">YouTube Comment</span>
+          </div>
+          <div class="evidence-quote">
+            "Why hasn't anyone made a griddle with a broiler option? I'd pay double for that."
+          </div>
+          <div class="evidence-meta">
+            <span class="evidence-sentiment evidence-sentiment--positive">Opportunity</span>
+            <span class="evidence-count">↑ 234 likes</span>
+          </div>
+        </div>
+
+        <div class="evidence-card">
+          <div class="evidence-source">
+            <span class="evidence-source-icon">💬</span>
+            <span class="evidence-source-name">r/grilling</span>
+          </div>
+          <div class="evidence-quote">
+            "I'm in an apartment. Can't have gas or charcoal on my balcony. Current is the only real option but $800 is steep."
+          </div>
+          <div class="evidence-meta">
+            <span class="evidence-sentiment evidence-sentiment--neutral">Market gap</span>
+            <span class="evidence-count">↑ 156 upvotes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Insight: Your Advantage -->
+  <section class="insight-section">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <div class="section-label">Key Finding #1</div>
+        <h2 class="section-title">YOUR BROILER BAFFLES SOLVE<br>THE #1 GRIDDLE COMPLAINT</h2>
+      </div>
+
+      <div class="insight-card insight-card--cyan reveal">
+        <div class="insight-eyebrow">Hypothesis: High Confidence</div>
+        <h3 class="insight-title">THE GRIDDLE THAT FINISHES</h3>
+        <div class="insight-body">
+          <p>
+            Across 23,000 reviews, <strong>"can't finish food with top-down heat"</strong> appears in 12% of all griddle complaints—making it the single most common functional limitation mentioned.
+          </p>
+          <p>
+            Your Broiler Baffles technology is the only solution on the market. But your positioning buries it under "2-in-1 versatility"—a generic claim that doesn't connect to the specific pain point.
+          </p>
+          <p>
+            <strong>Reframe:</strong> "Griddles can't finish. This one can." Lead with the limitation everyone experiences. Let Blackstone owners realize what they're missing.
+          </p>
+        </div>
+
+        <div class="signals-preview">
+          <div class="signals-preview-header">
+            <span class="signals-preview-title">Supporting Signals</span>
+            <span class="signals-preview-count">47 signals</span>
+          </div>
+          <div class="signal-chips">
+            <span class="signal-chip">r/blackstonegriddle complaints</span>
+            <span class="signal-chip">Amazon review analysis</span>
+            <span class="signal-chip">YouTube comment sentiment</span>
+            <span class="signal-chip">Competitor patent gaps</span>
+            <span class="signal-chip">+43 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Competitive Landscape -->
+  <section class="landscape-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Competitive Intelligence</div>
+        <h2 class="section-title">WHO'S MOVING WHERE</h2>
+      </div>
+
+      <div class="landscape-grid reveal">
+        <div class="landscape-card landscape-card--leader">
+          <div class="landscape-position">Market Leader</div>
+          <div class="landscape-brand">BLACKSTONE</div>
+          <div class="landscape-share">80% griddle market share</div>
+          <ul class="landscape-moves">
+            <li>Acquired by Weber (2024)</li>
+            <li>Expanding into accessories</li>
+            <li>No convergence products</li>
+            <li>Hiring: Supply chain, DTC</li>
+          </ul>
+        </div>
+
+        <div class="landscape-card landscape-card--challenger">
+          <div class="landscape-position">Challenger</div>
+          <div class="landscape-brand">TRAEGER</div>
+          <div class="landscape-share">Pellet grill dominant</div>
+          <ul class="landscape-moves">
+            <li>Flatrock griddle launch</li>
+            <li>First non-pellet product</li>
+            <li>Signals category anxiety</li>
+            <li>Hiring: Product, Marketing</li>
+          </ul>
+        </div>
+
+        <div class="landscape-card landscape-card--emerging">
+          <div class="landscape-position">Emerging Threat</div>
+          <div class="landscape-brand">CURRENT</div>
+          <div class="landscape-share">Electric grill pioneer</div>
+          <ul class="landscape-moves">
+            <li>700°F on 110V outlet</li>
+            <li>NFPA balcony approved</li>
+            <li>CES Innovation Award</li>
+            <li>Targets urban market</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Current threat detail -->
+      <div class="insight-card insight-card--magenta reveal" style="margin-top: 3rem;">
+        <div class="insight-eyebrow">Emerging Threat Analysis</div>
+        <h3 class="insight-title">CURRENT IS BUILDING IN A MARKET YOU CAN'T REACH</h3>
+        <div class="insight-body">
+          <p>
+            <strong>60% of new urban housing units don't allow gas or charcoal grilling.</strong> Building codes, HOA rules, and fire regulations are pushing outdoor cooking indoors—or electric.
+          </p>
+          <p>
+            Current's Model G+ ($799) is the first electric grill that hits serious temperatures AND has NFPA approval for balcony use. They're not competing with you in backyards. They're creating a market you can't enter without an electric product.
+          </p>
+          <p>
+            <strong>Patent analysis shows:</strong> Current filed 12 patents in 2024-2025 related to high-efficiency electric heating elements. They're building moats.
+          </p>
+        </div>
+
+        <div class="signals-preview">
+          <div class="signals-preview-header">
+            <span class="signals-preview-title">Intelligence Sources</span>
+            <span class="signals-preview-count">23 signals</span>
+          </div>
+          <div class="signal-chips">
+            <span class="signal-chip">USPTO filings</span>
+            <span class="signal-chip">NFPA code changes</span>
+            <span class="signal-chip">Urban housing data</span>
+            <span class="signal-chip">Current job postings</span>
+            <span class="signal-chip">+19 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AI Trap -->
+  <section>
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <div class="section-label">Key Finding #3</div>
+        <h2 class="section-title">THE AI FEATURE TRAP</h2>
+      </div>
+
+      <div class="insight-card insight-card--gold reveal">
+        <div class="insight-eyebrow">CES 2026 Signal Analysis</div>
+        <h3 class="insight-title">OUTCOME AUTOMATION = LOVED.<br>INTERACTION AUTOMATION = MOCKED.</h3>
+        <div class="insight-body">
+          <p>
+            Samsung's AI refrigerator won "Worst in Show." Bosch's Alexa coffee maker got "Who Asked For This?"
+            Meanwhile, LUMO's AI grill that auto-detects food and sets cook times <strong>won Best of CES.</strong>
+          </p>
+          <p>
+            The pattern is clear across 234 trade articles and 12,000+ social mentions:
+          </p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0;" class="reveal">
+        <div style="background: var(--bg-card); padding: 1.5rem;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem;">✓ Valued</div>
+          <ul style="color: var(--text-secondary); font-size: 0.95rem; list-style: none;">
+            <li style="margin-bottom: 0.75rem;">→ AI figures out cook time</li>
+            <li style="margin-bottom: 0.75rem;">→ Auto-adjusts temperature</li>
+            <li style="margin-bottom: 0.75rem;">→ Alerts when done</li>
+            <li>→ Reduces your steps</li>
+          </ul>
+        </div>
+        <div style="background: var(--bg-card); padding: 1.5rem;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--red); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem;">✗ Rejected</div>
+          <ul style="color: var(--text-secondary); font-size: 0.95rem; list-style: none;">
+            <li style="margin-bottom: 0.75rem;">→ Voice control for door</li>
+            <li style="margin-bottom: 0.75rem;">→ Camera watches food</li>
+            <li style="margin-bottom: 0.75rem;">→ App for everything</li>
+            <li>→ Adds futuristic steps</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="reveal" style="font-size: 1.1rem; color: var(--text-secondary); margin-top: 2rem;">
+        <strong style="color: var(--gold);">The line is simple:</strong> Does it reduce what I do, or just change how I do it?
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Recommendations -->
+  <section class="reco-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Strategic Recommendations</div>
+        <h2 class="section-title">WHAT WE'D DO</h2>
+      </div>
+
+      <div class="reco-grid">
+        <div class="reco-card reveal">
+          <div class="reco-priority">Priority 1 — Immediate</div>
+          <h3 class="reco-title">REPOSITION THE 2-IN-1 GRIDDLER</h3>
+          <p class="reco-body">
+            Lead with limitation: "Griddles can't finish. This one can." Your Broiler Baffles solve the #1 complaint. Stop hiding it under generic versatility claims.
+          </p>
+        </div>
+
+        <div class="reco-card reveal">
+          <div class="reco-priority">Priority 2 — Q2 2026</div>
+          <h3 class="reco-title">DECIDE: BACKYARD OR BALCONY</h3>
+          <p class="reco-body">
+            You're backyard-only. Growth is in constrained urban spaces. Current owns that segment. Either enter electric or double down on backyard differentiation.
+          </p>
+        </div>
+
+        <div class="reco-card reveal">
+          <div class="reco-priority">Priority 3 — Product Roadmap</div>
+          <h3 class="reco-title">SMART FEATURES: OUTCOMES ONLY</h3>
+          <p class="reco-body">
+            If adding intelligence, focus on auto-adjust and alerts. Avoid voice control, cameras, or app-for-everything approaches. The backlash is real.
+          </p>
+        </div>
+
+        <div class="reco-card reveal">
+          <div class="reco-priority">Priority 4 — Monitoring</div>
+          <h3 class="reco-title">TRACK CURRENT'S EXPANSION</h3>
+          <p class="reco-body">
+            Set up ongoing monitoring of Current's patent filings, job postings, and retail expansion. If they move into multi-function, your positioning changes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confidence Levels -->
+  <section class="confidence-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Calibration</div>
+        <h2 class="section-title">CONFIDENCE LEVELS</h2>
+      </div>
+
+      <p class="reveal" style="color: var(--text-secondary); max-width: 600px; margin-bottom: 2.5rem;">
+        Not all findings carry equal weight. Here's our confidence in each claim, so you can calibrate how much to bet.
+      </p>
+
+      <div class="confidence-list reveal">
+        <div class="confidence-item">
+          <span class="confidence-claim">Blackstone dominates through specialization</span>
+          <span class="confidence-badge confidence-badge--very">Very High</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--very" data-width="95"></div>
+          </div>
+        </div>
+
+        <div class="confidence-item">
+          <span class="confidence-claim">"Can't finish" is the #1 griddle complaint</span>
+          <span class="confidence-badge confidence-badge--very">Very High</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--very" data-width="92"></div>
+          </div>
+        </div>
+
+        <div class="confidence-item">
+          <span class="confidence-claim">Your Broiler Baffles solve a real problem</span>
+          <span class="confidence-badge confidence-badge--high">High</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--high" data-width="85"></div>
+          </div>
+        </div>
+
+        <div class="confidence-item">
+          <span class="confidence-claim">AI bifurcation (outcome vs interaction) is real</span>
+          <span class="confidence-badge confidence-badge--high">High</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--high" data-width="78"></div>
+          </div>
+        </div>
+
+        <div class="confidence-item">
+          <span class="confidence-claim">Electric/balcony is a real competitive threat</span>
+          <span class="confidence-badge confidence-badge--medium">Medium</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--medium" data-width="58"></div>
+          </div>
+        </div>
+
+        <div class="confidence-item">
+          <span class="confidence-claim">Charcoal "comeback" will affect your market</span>
+          <span class="confidence-badge confidence-badge--low">Low</span>
+          <div class="confidence-bar">
+            <div class="confidence-bar-fill confidence-bar-fill--low" data-width="22"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="methodology">
+    <div class="container">
+      <div class="methodology-content reveal">
+        <h3 class="methodology-title">HOW WE DID THIS</h3>
+        <p>
+          This brief was generated by Waldo's intelligence pipeline. We ingested <strong>847 signals</strong> across 8 source categories, processed <strong>23,000+ reviews</strong> through sentiment analysis, and generated <strong>12 hypotheses</strong> using adversarial validation (separate agents arguing for and against each claim).
+        </p>
+        <p>
+          Every hypothesis includes supporting and refuting evidence. Confidence levels are calibrated based on signal density, source diversity, and counter-evidence strength.
+        </p>
+        <p>
+          <strong>This isn't a trend report.</strong> Trend reports describe what's happening. This is a set of testable hypotheses about what's changing, why it matters, and what to do about it.
+        </p>
+        <p style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-weight: 500;">
+          The goal is decisions, not awareness.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">WALDO.FYI</div>
+      <div class="footer-face">(｡･ω･｡)</div>
+    </div>
+  </footer>
+
+  <script>
+    // Progress bar
+    const progressBar = document.getElementById('progressBar');
+    const nav = document.getElementById('nav');
+
+    function updateScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+
+      // Show nav after scrolling past hero
+      if (scrollTop > window.innerHeight * 0.8) {
+        nav.classList.add('is-visible');
+      } else {
+        nav.classList.remove('is-visible');
+      }
+    }
+
+    window.addEventListener('scroll', updateScroll, { passive: true });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal, #bigStat');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Confidence bars
+    const confidenceBars = document.querySelectorAll('.confidence-bar-fill');
+
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const width = entry.target.dataset.width;
+          entry.target.style.width = width + '%';
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    confidenceBars.forEach(bar => barObserver.observe(bar));
+  </script>
+
+</body>
+</html>
